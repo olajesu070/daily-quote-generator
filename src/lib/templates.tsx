@@ -245,52 +245,6 @@ const PremiumGoldTemplate: React.FC<{ data: QuoteData }> = ({ data }) => {
   );
 };
 
-const SereneSpiritTemplate: React.FC<{ data: QuoteData }> = ({ data }) => {
-  return (
-    <div className="w-[1080px] h-[1080px] bg-[#fdfaf6] flex items-center justify-center relative overflow-hidden font-sans">
-      {/* Faded logo background */}
-      {data.logoUrl && (
-        <div className="absolute inset-0 flex items-center justify-center opacity-3">
-          <img src={data.logoUrl} alt="" className="w-[800px] h-[800px] object-contain" />
-        </div>
-      )}
-      
-      <div className="absolute top-0 left-0 w-full h-full opacity-5">
-        <svg viewBox="0 0 100 100" className="w-full h-full fill-slate-900">
-           <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="1 4" />
-        </svg>
-      </div>
-
-      <div className="relative z-10 max-w-[800px] text-center">
-        {data.logoUrl && (
-          <div className="w-20 h-20 bg-slate-100 rounded-2xl p-3 mx-auto mb-12 shadow-sm">
-            <img src={data.logoUrl} alt="Church Logo" className="w-full h-full object-contain" />
-          </div>
-        )}
-        
-        {data.churchName && (
-          <p className="text-slate-400 font-medium tracking-[0.2em] text-lg uppercase mb-20">{data.churchName}</p>
-        )}
-
-        <h2 className="text-7xl font-light text-slate-800 leading-tight mb-12 italic">
-          "{data.text || "Peace be still."}"
-        </h2>
-
-        {data.author && (
-          <div className="flex items-center justify-center gap-4 mb-20">
-            <div className="w-8 h-[2px] bg-slate-200" />
-            <p className="text-2xl text-slate-500">{data.author}</p>
-            <div className="w-8 h-[2px] bg-slate-200" />
-          </div>
-        )}
-
-        {data.churchHandle && (
-          <p className="text-slate-300 font-bold text-xl">{data.churchHandle}</p>
-        )}
-      </div>
-    </div>
-  );
-};
 
 const ModernPulseTemplate: React.FC<{ data: QuoteData }> = ({ data }) => {
   return (
@@ -431,53 +385,6 @@ const GradientBurstTemplate: React.FC<{ data: QuoteData }> = ({ data }) => {
   );
 };
 
-const ElegantMinimalTemplate: React.FC<{ data: QuoteData }> = ({ data }) => {
-  return (
-    <div className="w-[1080px] h-[1080px] bg-white flex items-center justify-center relative overflow-hidden font-serif">
-      {/* Faded logo background */}
-      {data.logoUrl && (
-        <div className="absolute inset-0 flex items-center justify-center opacity-3">
-          <img src={data.logoUrl} alt="" className="w-[900px] h-[900px] object-contain" />
-        </div>
-      )}
-      
-      {/* Subtle corner accents */}
-      <div className="absolute top-0 left-0 w-1 h-32 bg-slate-900" />
-      <div className="absolute top-0 left-0 w-32 h-1 bg-slate-900" />
-      <div className="absolute bottom-0 right-0 w-1 h-32 bg-slate-900" />
-      <div className="absolute bottom-0 right-0 w-32 h-1 bg-slate-900" />
-      
-      <div className="relative z-10 max-w-[850px] text-center px-20">
-        {/* Logo at top */}
-        {data.logoUrl && (
-          <div className="w-32 h-32 mx-auto mb-16 border-2 border-slate-200 rounded-full p-4">
-            <img src={data.logoUrl} alt="Church Logo" className="w-full h-full object-contain" />
-          </div>
-        )}
-        
-        {data.churchName && (
-          <p className="text-slate-400 font-sans font-medium tracking-[0.4em] text-sm uppercase mb-24 letterspacing">{data.churchName}</p>
-        )}
-
-        <blockquote className="text-7xl font-light text-slate-900 leading-[1.15] mb-20 italic">
-          "{data.text || "Simplicity is the ultimate sophistication."}"
-        </blockquote>
-
-        {data.author && (
-          <div className="flex items-center justify-center gap-6 mb-24">
-            <div className="w-16 h-px bg-slate-300" />
-            <p className="text-2xl text-slate-600 font-medium">{data.author}</p>
-            <div className="w-16 h-px bg-slate-300" />
-          </div>
-        )}
-
-        {data.churchHandle && (
-          <p className="text-slate-300 font-sans font-bold tracking-[0.2em] text-base">{data.churchHandle}</p>
-        )}
-      </div>
-    </div>
-  );
-};
 
 const NeonGlowTemplate: React.FC<{ data: QuoteData }> = ({ data }) => {
   return (

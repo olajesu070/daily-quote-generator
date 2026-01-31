@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Download, RefreshCw, Type, Sparkles, Building2, AtSign, Settings2, Upload, X } from 'lucide-react';
+import { Download, Type, Sparkles, Building2, AtSign, Settings2, Upload, X } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import { TEMPLATES, matchTemplate, type TemplateId, cn } from './lib/templates';
 
