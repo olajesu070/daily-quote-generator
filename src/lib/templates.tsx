@@ -521,4 +521,4 @@ export const matchTemplate = (text: string): TemplateId => {
   return 'motivation-blue';
 };
 
-import { Sparkles, RefreshCw } from 'lucide-react';
+import {  RefreshCw } from 'lucide-react';
