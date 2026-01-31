@@ -1,0 +1,9 @@
+
+> daily-quote-generator@0.0.0 build
+> tsc && vite build
+
+src/App.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/App.tsx(4,36): error TS1484: 'TemplateId' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/lib/templates.tsx(2,17): error TS6133: 'Sunset' is declared but its value is never read.
+src/lib/templates.tsx(2,25): error TS6133: 'Briefcase' is declared but its value is never read.
+src/lib/templates.tsx(2,43): error TS6133: 'Star' is declared but its value is never read.
