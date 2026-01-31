@@ -156,8 +156,8 @@ function App() {
               className="bg-slate-900 hover:bg-slate-800 text-white px-4 sm:px-8 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 sm:gap-3 shadow-xl shadow-slate-200"
             >
               <Download className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">Export Designs</span>
-              <span className="sm:hidden">Exports</span>
+              <span className="hidden sm:inline">Export Designss</span>
+              <span className="sm:hidden">Exportss</span>
             </button>
           </div>
         </div>
