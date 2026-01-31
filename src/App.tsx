@@ -27,17 +27,7 @@ function App() {
     }
   }, []);
 
-  // Check if mobile on mount
-  useEffect(() => {
-    const checkMobile = () => {
-      if (window.innerWidth < 1024) {
-        setIsMobilePreview(true);
-      }
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+
 
   // Auto-match template based on input
   useEffect(() => {
@@ -176,7 +166,7 @@ function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
         
         {/* Mobile Toggle Button */}
-        <div className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900 rounded-full p-1 shadow-2xl border border-slate-700 flex items-center">
+        <div className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] bg-slate-900 rounded-full p-1 shadow-2xl border border-slate-700 flex items-center">
            <button 
              onClick={() => setIsMobilePreview(false)}
              className={cn(
@@ -417,13 +407,13 @@ function App() {
           "lg:col-span-8 order-first lg:order-last",
           !isMobilePreview ? "hidden lg:block" : "block"
         )}>
-           <div className="bg-white rounded-lg sm:rounded-xl lg:rounded-[40px] border border-slate-200 sm:border-2 lg:border-4 sm:border-slate-100 w-full flex flex-col items-center justify-center min-h-[400px] xs:min-h-[450px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[800px] relative shadow-md sm:shadow-lg lg:shadow-2xl shadow-slate-200/50 overflow-hidden p-2 sm:p-4 lg:p-0">
-              <div className="absolute top-1.5 sm:top-2 md:top-4 lg:top-8 left-1.5 sm:left-2 md:left-4 lg:left-8 flex items-center gap-0.5 sm:gap-1 md:gap-2 px-1.5 sm:px-2 md:px-3 lg:px-4 py-0.5 sm:py-1 md:py-1.5 lg:py-2 bg-slate-50 rounded-full border border-slate-100 z-10">
+           <div className="w-full flex flex-col items-center justify-center relative overflow-hidden fixed inset-0 z-[60] h-[100dvh] rounded-none border-0 p-0 bg-slate-100 lg:bg-white lg:relative lg:h-auto lg:min-h-[800px] lg:rounded-[40px] lg:border-4 lg:border-slate-100 lg:shadow-2xl lg:z-0 lg:p-0">
+              <div className="absolute top-12 sm:top-2 md:top-4 lg:top-8 left-4 sm:left-2 md:left-4 lg:left-8 flex items-center gap-0.5 sm:gap-1 md:gap-2 px-1.5 sm:px-2 md:px-3 lg:px-4 py-0.5 sm:py-1 md:py-1.5 lg:py-2 bg-slate-50 rounded-full border border-slate-100 z-10">
                  <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 md:w-1.5 md:h-1.5 lg:w-2 lg:h-2 bg-green-500 rounded-full animate-pulse" />
-                 <span className="text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-400">Preview</span>
+                 <span className="text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-400">Live Preview</span>
               </div>
 
-              <div className="transform scale-[0.16] xs:scale-[0.19] sm:scale-[0.25] md:scale-[0.32] lg:scale-[0.42] xl:scale-[0.55] origin-center shadow-[0_0_100px_rgba(0,0,0,0.1)] rounded-lg overflow-hidden">
+              <div className="transform scale-[0.28] xs:scale-[0.34] sm:scale-[0.45] md:scale-[0.55] lg:scale-[0.42] xl:scale-[0.55] origin-center shadow-2xl rounded-lg overflow-hidden">
                  <div id="template-canvas" className="bg-white">
                    {SelectedTemplateComponent && (
                      <SelectedTemplateComponent data={{ 
@@ -439,7 +429,7 @@ function App() {
 
               <button
                  onClick={handleDownload}
-                 className="absolute bottom-1.5 sm:bottom-2 md:bottom-4 lg:bottom-10 right-1.5 sm:right-2 md:right-4 lg:right-10 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 py-1 xs:py-1.5 sm:py-2 md:py-3 lg:py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-0.5 sm:gap-1 md:gap-2 text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base z-10"
+                 className="absolute bottom-8 sm:bottom-2 md:bottom-4 lg:bottom-10 right-4 sm:right-2 md:right-4 lg:right-10 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 py-1 xs:py-1.5 sm:py-2 md:py-3 lg:py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-0.5 sm:gap-1 md:gap-2 text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base z-10"
               >
                  <Download className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                  <span>Export</span>
