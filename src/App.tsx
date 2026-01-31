@@ -7,21 +7,36 @@ function App() {
   const [inputText, setInputText] = useState('');
   const [selectedTemplateId, setSelectedTemplateId] = useState<TemplateId>('motivation-blue');
   const [author, setAuthor] = useState('');
-  const [churchName, setChurchName] = useState('My Church');
+  const [churchName, setChurchName] = useState('Christ Chosen Zion City Ministry');
   const [churchHandle, setChurchHandle] = useState('@churchhandle');
   const [isAutoMatch, setIsAutoMatch] = useState(true);
   const [activeTab, setActiveTab] = useState<'content' | 'branding'>('content');
-  const [logoUrl, setLogoUrl] = useState<string>('');
+  const [logoUrl, setLogoUrl] = useState<string>('/default-logo.png');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  // Mobile: true = show preview, false = show editor
+  const [isMobilePreview, setIsMobilePreview] = useState(true);
   
   const MAX_CHARS = 100;
 
-  // Load logo from localStorage on mount
+  // Load logo from localStorage on mount, fall back to default if none
   useEffect(() => {
     const savedLogo = localStorage.getItem('churchLogo');
     if (savedLogo) {
       setLogoUrl(savedLogo);
     }
+  }, []);
+
+  // Check if mobile on mount
+  useEffect(() => {
+    const checkMobile = () => {
+      if (window.innerWidth < 1024) {
+        setIsMobilePreview(true);
+      }
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Auto-match template based on input
@@ -158,12 +173,37 @@ function App() {
         </div>
       </header>
 
-      <main className="flex-1 max-w-[1600px] mx-auto w-full px-4 sm:px-6 py-6 sm:py-10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
         
-        {/* Sidebar Controls */}
-        <div className="lg:col-span-4 space-y-4 sm:space-y-6">
+        {/* Mobile Toggle Button */}
+        <div className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900 rounded-full p-1 shadow-2xl border border-slate-700 flex items-center">
+           <button 
+             onClick={() => setIsMobilePreview(false)}
+             className={cn(
+               "px-6 py-3 rounded-full text-sm font-bold transition-all",
+               !isMobilePreview ? "bg-indigo-600 text-white shadow-lg" : "text-slate-400 hover:text-white"
+             )}
+           >
+             Edit
+           </button>
+           <button 
+             onClick={() => setIsMobilePreview(true)}
+             className={cn(
+               "px-6 py-3 rounded-full text-sm font-bold transition-all",
+               isMobilePreview ? "bg-indigo-600 text-white shadow-lg" : "text-slate-400 hover:text-white"
+             )}
+           >
+             Preview
+           </button>
+        </div>
+
+        {/* Sidebar Controls - Hidden on mobile if in Preview Mode */}
+        <div className={cn(
+          "lg:col-span-4 space-y-4 sm:space-y-6",
+          isMobilePreview ? "hidden lg:block" : "block"
+        )}>
           
-          <div className="bg-white rounded-2xl sm:rounded-[32px] shadow-sm border border-slate-200 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
             {/* Tabs */}
             <div className="flex border-b border-slate-100 p-1.5 sm:p-2">
               <button 
@@ -373,8 +413,11 @@ function App() {
         </div>
 
         {/* Preview Area - Shows LAST on mobile, FIRST on desktop */}
-        <div className="lg:col-span-8 order-last lg:order-first">
-           <div className="bg-white rounded-lg sm:rounded-xl lg:rounded-[40px] border border-slate-200 sm:border-2 lg:border-4 sm:border-slate-100 w-full flex flex-col items-center justify-center min-h-[250px] xs:min-h-[280px] sm:min-h-[350px] md:min-h-[450px] lg:min-h-[800px] relative shadow-md sm:shadow-lg lg:shadow-2xl shadow-slate-200/50 overflow-hidden p-2 sm:p-4 lg:p-0">
+        <div className={cn(
+          "lg:col-span-8 order-first lg:order-last",
+          !isMobilePreview ? "hidden lg:block" : "block"
+        )}>
+           <div className="bg-white rounded-lg sm:rounded-xl lg:rounded-[40px] border border-slate-200 sm:border-2 lg:border-4 sm:border-slate-100 w-full flex flex-col items-center justify-center min-h-[400px] xs:min-h-[450px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[800px] relative shadow-md sm:shadow-lg lg:shadow-2xl shadow-slate-200/50 overflow-hidden p-2 sm:p-4 lg:p-0">
               <div className="absolute top-1.5 sm:top-2 md:top-4 lg:top-8 left-1.5 sm:left-2 md:left-4 lg:left-8 flex items-center gap-0.5 sm:gap-1 md:gap-2 px-1.5 sm:px-2 md:px-3 lg:px-4 py-0.5 sm:py-1 md:py-1.5 lg:py-2 bg-slate-50 rounded-full border border-slate-100 z-10">
                  <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 md:w-1.5 md:h-1.5 lg:w-2 lg:h-2 bg-green-500 rounded-full animate-pulse" />
                  <span className="text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-400">Preview</span>
