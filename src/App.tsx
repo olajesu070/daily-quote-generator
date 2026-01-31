@@ -157,7 +157,7 @@ function App() {
             >
               <Download className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="hidden sm:inline">Export Design</span>
-              <span className="sm:hidden">Export</span>
+              <span className="sm:hidden">Exports</span>
             </button>
           </div>
         </div>
